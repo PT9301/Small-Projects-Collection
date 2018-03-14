@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Testing Javascript Objects</title>
+</head>
+
+<body>
+
+<p> Testing objects in JavaScript.</p>
+
+<p id="output"></p>
+<p id="calcOutput"></p>
+
+<script>
+function calcAvgHeight(data) {
+	avgHCalc = "(";
+	avgWCalc = "(";
+	objCount = 0;
+	for (i in data)
+    {
+    	if (data.hasOwnProperty(i))
+    	{
+	    	document.getElementById("output").innerHTML += i + ", of height: " + data[i].height + "cm.<br />";
+	    	document.getElementById("output").innerHTML += i + "\'s weight: " + data[i].weight + "kg.<br />";
+	    	document.getElementById("output").innerHTML += "Current location: " + data[i].place + ".<br />";
+	    	document.getElementById("output").innerHTML += "Name of constructor of i: " + i.constructor.name + "<br />";
+	    	document.getElementById("output").innerHTML += "<br />";
+	    	avgHCalc += " + " + data[i].height;
+	    	avgWCalc += " + " + data[i].weight;
+	    	objCount++;
+    	}
+    }
+    avgHCalc = avgHCalc.substring(0,1) + avgHCalc.substring(4);
+    avgHCalc += ")/" + objCount;
+
+    avgWCalc = avgWCalc.substring(0,1) + avgWCalc.substring(4);
+    avgWCalc += ")/" + objCount;
+
+    document.getElementById("calcOutput").innerHTML += "Average Height: " + avgHCalc;
+    document.getElementById("calcOutput").innerHTML += " = " + eval(avgHCalc) + "cm.<br />";
+
+    document.getElementById("calcOutput").innerHTML += "Average Weight: " + avgWCalc;
+    document.getElementById("calcOutput").innerHTML += " = " + eval(avgWCalc) + "kg.";
+}
+
+var avgHeight = calcAvgHeight({
+  Dieter: { height: 190, weight: 89, place: "work" },
+  Dave: { height: 164, weight: 73, place: "home" }
+});
+
+</script>
+
+</body>
+</html>
